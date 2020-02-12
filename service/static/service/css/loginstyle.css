@@ -1,0 +1,64 @@
+* {
+	font-family: 'Raleway', sans-serif;
+}
+
+body {
+	
+	color: #786fa4;
+	overflow-x: hidden;
+	font-size: 14px;
+}
+
+.h-100vh {
+	height: 100vh !important;
+}
+
+ .card {
+	margin: 0 auto;
+	max-width: 700px;
+	border: none;
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+@media only screen and (max-width: 767px) {
+	body{
+		padding-top: 20px;
+	}
+	.log .card {
+		width: 100%;
+	}
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+	color: #FDFFFC !important;
+	border-color: #26A598 !important;
+	background-color: #26A598 !important;
+}
+
+.text-center {
+	color: #FDFFFC !important;
+	background-color: #85AD2E !important;
+}
+
+.btn-primary {
+	color: #FDFFFC;
+	background-color: #46AD2E;
+	border-color: #8D27D1;
+}
+
+.btn-primary:hover {
+	background-color: #10AD2E;
+	border-color: #10AD2E;
+}
+
+.card-header.display-4 {
+	font-weight: bold;
+}

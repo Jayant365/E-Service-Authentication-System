@@ -1,0 +1,687 @@
+{% extends 'service/base.html' %}
+
+
+        {% load staticfiles %}
+
+{% block head %}
+
+    <title>Farmket The tru need of farmer.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="canonical" href="http://www..com/service/">
+
+
+{% endblock %}
+
+
+
+{% block body %}
+<style>
+	#colorlib-hero{
+	height:350px; overflow:hidden;
+	}
+	#colorlib-hero :li{
+	}
+.farmket-img{
+ border-radius:20px;
+   -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+.farmket-index-form{
+display:inline;
+}
+.farmket-amen{
+padding:5px; margin:5px;
+}
+.farmket-amen i{
+font-size:16px;
+}
+.farmket-index-btn{
+overflow:hidden;
+}
+.farmket-p-btn{
+margin-top:7px;
+}
+</style>
+	<aside id="colorlib-hero" >
+			<div class="flexslider">
+				<ul class="slides">
+			   	<li style="background-image: url({% static 'service/images/cover-img-4.jpg' %}); 	height:350px;  ">
+			   		<div class="overlay"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
+				   				<div class="slider-text-inner text-center">
+				   					<h2>by farmket.com</h2>
+				   					<h1>Sallons..</h1>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+			   	</li>
+			  	</ul>
+		  	</div>
+		</aside>
+
+
+		<div class="colorlib-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="wrap-division">
+									<div class="col-md-12 col-md-offset-0 heading2 animate-box">
+										<h2>Hotel Edison</h2>
+									</div>
+									<div class="row">
+                                         {% if album %}
+
+                                        {% for service in album.shop_set.all %}
+
+                                        {% if service.available == True %}
+
+										<div class="col-md-12 animate-box">
+											<div class="room-wrap">
+												<div class="row">
+													<div class="col-md-6 col-sm-6">
+														<div class="room-img farmket-img" style="background-image: url({% static 'service/images/room-1.jpg' %}); "></div>
+													</div>
+													<div class="col-md-6 col-sm-6">
+														<div class="desc">
+															<h2><strong>{{ service.name }}</strong> </h2>
+														<!--	<p class="price"><span>$95</span> <small>/ night</small></p>-->
+											<font style="color:black;">				<p>Select services..
+															<br>
+
+
+                                                                <span  style="list-style-type:none;" id="shop{{ service.id }}" class="farmket-ref">
+
+
+                                                                {% for prod in service.product_set.all|slice:":3"  %}
+                                                               <!-- <i class="fas fa-circle-notch fa-spin" style="font-size:12px;"></i> {{ prod.name }}&nbsp<span class="price">{{ prod.price }}rs</span>&nbsp&nbsp
+                                                               -->
+
+															   <form action="{% url 'service:cart_ar' prod.id %}" class="form-product-ajax farmket-index-form"  method="POST" data-url="/service/cart/">
+																												{% csrf_token %}
+																   <div style="display:none">{{ cart_product_form }}</div>
+
+																   {% if  prod.id|stringformat:"i" in cart.cart.keys  %}
+																   <span  class="farmket-index-btn">
+																	   <button type="submit" id="r{{ prod.id }}" value="rem cart" class="btn btn-primary y">{{ prod.name }}</button>
+
+																		</span>
+
+
+																   {%  else %}
+																   <span  class="farmket-index-btn">
+																	   <button type="submit" value="add t" id="a{{ prod.id }}" class="btn ">{{ prod.name }}</button>
+
+																   </span>
+
+																   {% endif %}
+
+															    </form>
+
+																	{%  endfor %}
+
+
+                                                                </span><br>And more..
+                                                            <br><br>
+															<!--            <a href="{% url 'service:vegetables' %}" class="btn btn-default">Continue Shopping</a> -->
+															{% for f in service.facilities.all|slice:":5" %}
+
+
+																<span  class="farmket-amen"><i class='{{ f.icons }}' ></i> {{ f.name }}
+																	</span>
+
+                                                            {% endfor %}+more.<br>
+																</font>
+<!--															<table cellspacing="10" >
+																<tr>
+                                                            {% for f in service.facilities.all %}
+																	<td  >
+																<i class='{{ f.icons }}' style='font-size:16px'></i> {{ f.name }}&nbsp
+																	</td>&nbsp
+
+                                                            {% endfor %}
+																</tr>
+															</table>-->
+
+															<p class="farmket-p-btn" >
+																<a href="{% url 'orders:order_create' service.id %}" class="btn btn-primary">Book Now!</a> <a href="{% url 'service:detail' service.id %}" class="btn btn-primary btn-outline">View detail!</a></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
+
+										<div class="col-md-12 animate-box">
+											<div class="room-wrap">
+												<div class="row">
+													<div class="col-md-6 col-sm-6">
+														<div class="room-img" style="background-image: url({% static 'service/images/room-2.jpg' %});"></div>
+													</div>
+													<div class="col-md-6 col-sm-6">
+														<div class="desc">
+															<h2>Luxury Room</h2>
+															<p class="price"><span>$75</span> <small>/ night</small></p>
+															<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+															<p><a href="#" class="btn btn-primary">Book Now!</a></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-12 animate-box">
+											<div class="room-wrap">
+												<div class="row">
+													<div class="col-md-6 col-sm-6">
+														<div class="room-img" style="background-image: url({% static 'service/images/room-3.jpg' %});"></div>
+													</div>
+													<div class="col-md-6 col-sm-6">
+														<div class="desc">
+															<h2>Double Room</h2>
+															<p class="price"><span>$40</span> <small>/ night</small></p>
+															<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+															<p><a href="#" class="btn btn-primary">Book Now!</a></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-12 animate-box">
+											<div class="room-wrap">
+												<div class="row">
+													<div class="col-md-6 col-sm-6">
+														<div class="room-img" style="background-image: url({% static 'service/images/room-4.jpg' %});"></div>
+													</div>
+													<div class="col-md-6 col-sm-6">
+														<div class="desc">
+															<h2>Suite Room</h2>
+															<p class="price"><span>$25</span> <small>/ night</small></p>
+															<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+															<p><a href="#" class="btn btn-primary">Book Now!</a></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-12 animate-box">
+											<div class="room-wrap">
+												<div class="row">
+													<div class="col-md-6 col-sm-6">
+														<div class="room-img" style="background-image: url({% static 'service/images/room-5.jpg' %});"></div>
+													</div>
+													<div class="col-md-6 col-sm-6">
+														<div class="desc">
+															<h2>Superior Double Room</h2>
+															<p class="price"><span>$50</span> <small>/ night</small></p>
+															<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+															<p><a href="#" class="btn btn-primary">Book Now!</a></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-12 animate-box">
+											<div class="room-wrap">
+												<div class="row">
+													<div class="col-md-6 col-sm-6">
+														<div class="room-img" style="background-image: url({% static 'service/images/room-6.jpg' %});"></div>
+													</div>
+													<div class="col-md-6 col-sm-6">
+														<div class="desc">
+															<h2>Classic Double Room</h2>
+															<p class="price"><span>$48</span> <small>/ night</small></p>
+															<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+															<p><a href="#" class="btn btn-primary">Book Now!</a></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- SIDEBAR-->
+					<div class="col-md-3">
+						<div class="sidebar-wrap">
+														<div class="side search-wrap animate-box">
+								<h3 class="sidebar-heading">Search In google</h3>
+								<form method="get" action="http://www.google.com/search" class="colorlib-form">
+				              	<div class="row">
+				                <div class="col-md-12">
+				                  <div class="form-group">
+				                    <label for="google">Google</label>
+				                     <div class="form-field">
+				                      <input type="text" id="google" name="q" class="form-control" placeholder="Search Google.......">
+				                    </div>
+				                  </div>
+				                </div>
+
+
+				                <div class="col-md-12">
+				                  <input type="submit" name="submit" id="submit" value="Search!" class="btn btn-primary btn-block">
+				                </div>
+				              </div>
+				            </form>
+							</div>
+
+							<div class="side search-wrap animate-box">
+								<h3 class="sidebar-heading">Find your hotel</h3>
+								<form method="get" class="colorlib-form">
+
+				              	<div class="row">
+				                <div class="col-md-12">
+				                  <div class="form-group">
+				                    <label for="date">Location</label>
+				                     <div class="form-field">
+				                      <input type="text" id="location" name="q" class="form-control" placeholder="Search Location">
+				                    </div>
+				                  </div>
+				                </div>
+				                <div class="col-md-12">
+				                  <div class="form-group">
+				                    <label for="date">Category.</label>
+				                     <div class="form-field">
+				                      <input type="text" id="type" name="q" class="form-control" placeholder="Search type">
+				                    </div>
+				                  </div>
+				                </div>
+				                <div class="col-md-12">
+				                  <input type="submit" name="submit" id="submit" value="Find Hotel" class="btn btn-primary btn-block">
+				                </div>
+				              </div>
+				            </form>
+							</div>
+							<div class="side animate-box">
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading">Price Range</h3>
+										<form method="get" action="{% url 'service:sfood' %}" class="colorlib-form-2">
+						              	<div class="row">
+						                <div class="col-md-6">
+						                  <div class="form-group">
+						                    <label for="price_min">Price from:</label>
+						                    <div class="form-field">
+						                      <i class="icon icon-arrow-down3"></i>
+						                      <select name="price_min" id="price_min" value="{{ request.GET.price_min }}" class="form-control">
+						                              <option disabled selected value>  selecte  </option>
+
+						                        <option >1</option>
+						                        <option >2</option>
+						                        <option >30</option>
+						                        <option >40</option>
+						                        <option >10</option>
+						                      </select>
+						                    </div>
+						                  </div>
+						                </div>
+						                <div class="col-md-6">
+						                  <div class="form-group">
+						                    <label for="price_max">Price to:</label>
+						                    <div class="form-field">
+						                      <i class="icon icon-arrow-down3"></i>
+						                      <select name="price_max" id="price_max" value="{{ request.GET.price_max }}" class="form-control">
+						                             <option disabled selected value>  select T  </option>
+
+						                        <option  >200</option>
+						                        <option >400</option>
+						                        <option >60</option>
+						                        <option >80</option>
+						                        <option >10</option>
+						                      </select>
+						                    </div>
+						                  </div>
+						                </div>
+				                  <input type="submit" name="submit" id="submit" value="Find Hotel" class="btn btn-primary btn-block">
+
+						              </div>
+						            </form>
+					            </div>
+								</div>
+							</div>
+
+
+							<!--<div class="side animate-box">
+
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading">Review Rating</h3>
+										<form method="post" class="colorlib-form-2">
+										   <div class="form-check">
+												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<label class="form-check-label" for="exampleCheck1">
+													<p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+										    	   <p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+										      </label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+										      	<p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+										     </label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+										      	<p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+										     </label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+										      	<p class="rate"><span><i class="icon-star-full"></i></span></p>
+										     </label>
+										   </div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="side animate-box">
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading">Categories</h3>
+										<form method="post" class="colorlib-form-2">
+										   <div class="form-check">
+												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Apartment</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Hotel</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Hostel</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Inn</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Villa</h4>
+												</label>
+										   </div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="side animate-box">
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading">Location</h3>
+										<form method="post" class="colorlib-form-2">
+										   <div class="form-check">
+												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Greece</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Italy</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Spain</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Germany</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Japan</h4>
+												</label>
+										   </div>
+										</form>
+									</div>
+								</div>
+							</div>-
+							<div class="side animate-box">
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading">Facilities</h3>
+										<form method="post" class="colorlib-form-2">
+										   <div class="form-check">
+												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Airport Transfer</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Resto Bar</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Restaurant</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Swimming Pool</h4>
+												</label>
+										   </div>
+										   <div class="form-check">
+										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <label class="form-check-label" for="exampleCheck1">
+													<h4 class="place">Japan</h4>
+												</label>
+										   </div>
+										</form>
+									</div>
+								</div>
+							</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+    {% endblock %}
+
+ {% block bases %}
+<script>
+$(document).ready(function(){
+     var productform= $('.form-product-ajax');
+     productform.submit(function(event){
+     event.preventDefault();
+
+     var thisform= $(this);
+     var actionEndpoint=thisform.attr('action');
+  //   console.log(actionEndpoint);
+
+     var httpmethod=thisform.attr('method');
+     var formdata=thisform.serialize();
+
+ $.ajax({
+ url: actionEndpoint,
+ method:httpmethod,
+ data: formdata,
+
+ success:function(data){
+     //console.log("succ");
+//          alert(data.message);
+
+if (data.cng == 'yes'){
+btn(data)
+}
+if(data.q == '0'){
+
+//remove cart
+
+    $("#"+'r'+data.id).removeClass("btn-primary");
+
+  //console.log($("#"+'r'+data.id).html());
+
+
+//add cart default
+    $("#"+'a'+data.id).removeClass("btn-primary");
+}
+
+
+else{
+//rem to cart option
+
+    $("#"+'r'+data.id).addClass("btn-primary");
+
+//add cartm
+
+    $("#"+'a'+data.id).addClass("btn-primary");
+}
+
+         },
+
+ error:function(errordata){
+//console.log("error");
+// console.log(errordata);
+
+ }
+ });
+
+     });
+//this is the function which is used to remoove the class of the function tbn-primary so to let tknow he user tha  the sevice has been removes
+
+function btn(data){
+
+ $("#"+'shop'+data.sid+', button').removeClass("btn-primary");
+
+
+}
+
+function ref(){
+$.ajax({
+type: "GET",
+dataType: "json",
+url:"//service/cart_detial/",
+success: function(data)
+{
+    alert("i got data now i will parse it as i want to display it");
+},
+
+})
+}
+     });
+       //check taht page reloaded how many ime without regrehing
+     if(performance.navigation.type == 2){
+  // location.reload(true);
+//     $.ajax({
+//              type:'POST',
+//              url:'/service/cart/',
+//              data:{'mydata': 'xyz', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+//      success:function(data){
+//              {
+//
+//
+//}
+//              },
+//            error: function(){
+//                alert("error");
+//            }
+//        });
+
+
+
+}
+</script>
+<script type="text/javascript">
+
+
+       //check taht page reloaded how many ime without regrehing
+     if(performance.navigation.type >= 2){
+ref();
+}
+function ref(){
+     $.ajax({
+              type:'POST',
+              url:'/service/ref/',
+              data:{'mydata': 'xyz', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+      success:function(data){
+
+ $(".p.shops.id , button").removeClass("btn-primary");
+
+alert("succes");
+
+for (i = 0; i < data.ids.length; i++) {
+ //rem to cart option
+
+    $("#"+'r'+data.ids[i]).addClass("btn-primary");
+
+//add cartm
+
+    $("#"+'a'+data.ids[i]).addClass("btn-primary");
+
+
+}
+              },
+            error: function(){
+                alert("error");
+            }
+        });
+}
+
+
+
+//setInterval(function(){
+//     // $('.farmket-load').fadeIn(2000).load(' .farmket-load').fadeOut(2000);
+//           // alert("aysu");
+//
+//     // $('.farmket-load').reload(true);
+//
+//},5000);
+
+
+
+
+</script>
+{% endblock %}

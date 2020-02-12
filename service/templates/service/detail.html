@@ -1,0 +1,652 @@
+{% extends 'service/base.html' %}
+        {% load staticfiles %}
+
+{% block head %}
+
+    <title>tore</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+
+<style>
+.farmket-btn:hover{
+color:red;
+}
+
+     .owl-nav button {
+  position: absolute;
+  top: 50%;
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  transition: all 0.3s ease-in-out;
+}
+.owl-nav button.owl-prev {
+  left: 0;
+}
+.owl-nav button.owl-next {
+  right: 0;
+}
+
+.owl-dots {
+  text-align: center;
+  padding-top: 15px;
+}
+.owl-dots button.owl-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #ccc;
+  margin: 0 3px;
+}
+.owl-dots button.owl-dot.active {
+  background-color: #000;
+}
+.owl-dots button.owl-dot:focus {
+  outline: none;
+}
+.owl-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.38) !important;
+}
+span {
+    font-size: 70px;
+    position: relative;
+    top: -5px;
+}
+.owl-nav button:focus {
+    outline: none;
+}
+
+
+
+     .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 90%;
+  height:270px;
+text-align: :center;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 10px;
+}
+
+
+.item .btn {
+color: #7ac400;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: none;
+    border: 1px solid #7ac400;
+    padding: 6px 14px;
+    margin-top: 15px;
+    line-height: 16px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.btn:hover, .item .btn:focus {
+color: #fff;
+background: #7ac400;
+box-shadow: none;
+}
+
+.item .wish-icon {
+position: absolute;
+right: 10px;
+top: 10px;
+z-index: 99;
+cursor: pointer;
+font-size: 16px;
+color: #abb0b8;
+}
+
+
+.item .wish-icon .fa-heart {
+color: #ff6161;
+}
+
+ .item .item-price {
+font-size: 13px;
+padding: 2px 0;
+}
+
+.contact-info .ft .span{
+    font-size: 20px;
+     }
+
+.contact-info .ft .span{
+    font-size: 20px;
+     }
+
+.top-header-meta .span{
+    font-size: 20px;
+     }
+.fml{
+        height: 250px;
+        width: 250px;
+        margin-left: -40px;
+    margin-top: 20PX;
+    }
+
+@media only screen and (max-width: 600px) {
+ .fml{
+        height: 250px;
+        width: 250px;
+        margin-left: 70px;
+
+
+    }
+}
+
+   .item .container .xy{
+       padding-bottom: 10px;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+ <!-- ##### Breadcrumb Area Start ##### -->
+  <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'service/img/bg-img/18.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2>{{ service.category }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="famie-breadcrumb">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'main' %}"><i class="fa fa-home"></i> Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ service.category }}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- ##### Breadcrumb Area End ##### -->
+<!--&lt;!&ndash;PRODUCT SLIDER&ndash;&gt;-->
+<!--{% if service %}-->
+<!--{% for v in service.subcategory_set.all  %}-->
+<!--<div class="container">-->
+	<!--<div class="row">-->
+		<!--<div class="col-md-12">-->
+
+			<!--<h2 class="fetse"><b>{{ service.name }}</b></h2>-->
+			<!--<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">-->
+
+			<!--&lt;!&ndash; Wrapper for carousel items &ndash;&gt;-->
+            <!--<div class="b">-->
+            <!--<h1>{{ v.name }}</h1>-->
+
+            <!--</div>-->
+			<!--<div class="carousel-inner">-->
+				<!--<div class="item carousel-item active">-->
+					<!--<div class="row">-->
+						<!--{% for prod in v.product_set.all %}-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+
+															   <!--&lt;!&ndash;<form action="{% url 'service:cart_ar' prod.id %}" id="farmket-form"  class="form-product-ajax"  method="POST" data-url="/service/cart/">&ndash;&gt;-->
+																												<!--&lt;!&ndash;{% csrf_token %}&ndash;&gt;-->
+																   <!--&lt;!&ndash;<div style="display:none">{{ cart_product_form }}</div>&ndash;&gt;-->
+
+																   <!--&lt;!&ndash;{% if  prod.id|stringformat:"i" in cart.cart.keys  %}&ndash;&gt;-->
+																   <!--&lt;!&ndash;<span style="text-align: center;">&ndash;&gt;-->
+																	   <!--&lt;!&ndash;<button type="submit" id="r{{ prod.id }}"   value="rem cart"  class="btn wish-icon    farmket-btn">add<i style="color:green" class="fa fa-shopping-cart"></i></button>&ndash;&gt;-->
+
+																		<!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+
+																   <!--&lt;!&ndash;{%  else %}&ndash;&gt;-->
+
+
+																   <!--&lt;!&ndash;<span style="text-align: center;">&ndash;&gt;-->
+																	   <!--&lt;!&ndash;<button type="submit"  value="add t" id="a{{ prod.id }}" class="btn wish-icon   farmket-btn">	ad<i class="fa fa-shopping-cart"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+																   <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+
+																   <!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
+
+															    <!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+
+								<!--<div class="img-box">-->
+									<!--<img src="{{ prod.logo.url }}" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>{{ prod.prod }}</h4>-->
+
+									<!--<a href="#" class="btn btn-primary">Price: {{ prod.price }}/{{ prod.gram }}</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+
+						<!--{% endfor %}-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/sugar%20cane.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>Sugar cane</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/sugar%20cane.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>Sugar cane</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+
+
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="item carousel-item">-->
+					<!--<div class="row">-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>corn</h4>-->
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>pulses</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>vegetable</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+									<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>meat</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="item carousel-item">-->
+					<!--<div class="row">-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>rice</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>rice</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>rice</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="col-sm-3">-->
+							<!--<div class="thumb-wrapper">-->
+								<!--<span class="wish-icon"><i class="fa fa-heart-o"></i></span>-->
+								<!--<div class="img-box">-->
+									<!--<img src="img/core-img/rice.png" class="img-responsive img-fluid" alt="">-->
+								<!--</div>-->
+								<!--<div class="thumb-content">-->
+									<!--<h4>rice</h4>-->
+
+
+									<!--<a href="#" class="btn btn-primary">Click To Open</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; Carousel controls &ndash;&gt;-->
+			<!--<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">-->
+				<!--<i class="fa fa-angle-left"></i>-->
+			<!--</a>-->
+			<!--<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">-->
+				<!--<i class="fa fa-angle-right"></i>-->
+			<!--</a>-->
+
+
+		<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+
+
+<!--{% endfor %}-->
+<!--{% else %}-->
+
+<!--no album-->
+<!--{% endif %}-->
+
+
+
+
+
+
+
+
+<h2 class="fetse"><b>{{ service.name }}</b></h2>
+
+
+<div id="coros" style="margin-top:60px; margin-bottom:100px;">
+
+
+{% if service %}
+{% for v in service.subcategory_set.all  %}
+
+<!--PRODUCT SLIDER-->
+	<div style="margin-top:40px; margin-bottom:50px;">
+	<div class="container"><h1 >{{ v.name }}</h1></div>
+<div class="owl-slider container">
+<div id="{{ v.id }}" class="owl-carousel core-class" style="">
+
+<!--<div class="item ">-->
+<!--<div class="card col-sm-6 col-md-12" class="" style="text-align:center;">-->
+
+    <!--<div class="" style="text-align: center; display:inline-block:center; background-image:url({% static 'service/img/core-img/wheat.png' %}); height:150px; width:150px;   margin:auto; margin-top:10%;  border-radius:50%;   background-repeat: no-repeat;-->
+  <!--background-size: contain, cover; "   ></div>-->
+  <!--<div class="container" style="text-align:center; margin-top:-10px;">-->
+    <!--<h4 style="margin-top:-74px;margin-bottom:2px;" class="xy"><b>{{ pr }}</b></h4>-->
+      <!--<p class="item-price"><b>369.00</b></p>-->
+    <!--<a href="#" style="margin-top:-5px;" class="btn btn-primary">Add To Cart</a>-->
+
+  <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+							{% for prod in v.product_set.all %}
+
+    <div class="item ">
+<div class="card col-sm-6 col-md-12" class="" style="text-align:center;">
+
+    <div class="" style="text-align: center; display:inline-block:center; background-image:url({{ prod.logo.url }}); height:150px; width:150px;   margin:auto; margin-top:10%;  border-radius:50%;   background-repeat: no-repeat;
+  background-size: contain, cover; ">
+    </div>
+  <div class="container" style="text-align:center; margin-top:-10px;">
+    <h4 style="margin-top:4px;margin-bottom:-12px;" class="xy"><b>{{ prod.prod }}</b></h4>
+      <p class="item-price"><b>{{ prod.price }} /{{ prod.gram }} </b></p>
+
+	  				   <form action="{% url 'service:cart_ar' prod.id %}" id="farmket-form"  class="form-product-ajax"  method="POST" data-url="/service/cart/">
+
+																												{% csrf_token %}
+																   <div style="display:none">{{ cart_product_form }}</div>
+
+																   {% if  prod.id|stringformat:"i" in cart.cart.keys  %}
+
+
+																	   <button type="submit" id="r{{ prod.id }}" style="margin-top:7px"  value="rem cart"  class="btn   farmket-btn">Remove</button>
+
+																   {%  else %}
+
+																	   <button type="submit"  style="margin-top:7px"   value="add t" id="a{{ prod.id }}" class="btn    farmket-btn">	add to Cart
+
+																	   </button>
+
+						   {% endif %}
+
+															    </form>
+
+  </div>
+</div>
+</div>
+	{% endfor %}
+
+
+</div>
+</div>
+
+	</div>
+
+{% endfor %}
+{% else %}
+
+no album
+{% endif %}
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+ {% block bases %}
+
+<script>
+$("#basenav").css("display","none");
+
+$(document).ready(function(){</script>
+
+
+     <script>
+//this is the function which is used to remoove the class of the function tbn-primary so to let tknow he user tha  the sevice has been removes
+
+function btn(data){
+
+ $("#"+'shop'+data.sid+', button').removeClass("btn-primary");
+
+}
+
+// function ref(){
+// $.ajax({
+// type: "GET",
+// dataType: "json",
+// url:"//service/cart_detial/",
+// success: function(data)
+// {
+//     alert("i got data now i will parse it as i want to display it");
+// },
+//
+// });
+// }
+    // });
+       //check taht page reloaded how many ime without regrehing
+     if(performance.navigation.type == 2){
+  location.reload(true);
+//     $.ajax({
+//              type:'POST',
+//              url:'/service/cart/',
+//              data:{'mydata': 'xyz', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+//      success:function(data){
+//              {
+//
+//
+//}
+//              },
+//            error: function(){
+//                alert("error");
+//            }
+//        });
+
+    //alert("aysu");
+
+      //$('.farmket-load').reload(true);
+
+}
+
+</script>
+
+<script type="text/javascript">
+
+
+       //check taht page reloaded how many ime without regrehing
+     if(performance.navigation.type >= 2){
+ref();
+}
+function ref(){
+     $.ajax({
+              type:'POST',
+              url:'/service/ref/',
+              data:{'mydata': 'xyz', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+      success:function(data){
+              {
+ $("#"+'farmket-shop , button').removeClass("btn-primary");
+
+//alert("succes");
+
+for (i = 0; i < data.ids.length; i++) {
+ //rem to cart option
+
+    $("#"+'r'+data.ids[i]).addClass("btn-primary");
+
+//add cartm
+
+    $("#"+'a'+data.ids[i]).addClass("btn-primary");
+
+}
+}
+              },
+            error: function(){
+                alert("error");
+            }
+        });
+}
+
+
+
+//setInterval(function(){
+//     // $('.farmket-load').fadeIn(2000).load(' .farmket-load').fadeOut(2000);
+//           // alert("aysu");
+//
+//     // $('.farmket-load').reload(true);
+//
+//},5000);
+
+
+
+
+</script>
+    <script >
+
+
+    jQuery(".core-class").owlCarousel({
+  autoplay: true,
+  lazyLoad: true,
+  loop: true,
+  margin: 20,
+   /*
+  animateOut: 'fadeOut',
+  animateIn: 'fadeIn',
+  */
+  responsiveClass: true,
+  autoHeight: true,
+  autoplayTimeout: 7000,
+  smartSpeed: 800,
+  nav: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+
+    600: {
+      items: 1
+    },
+
+    1024: {
+      items: 4
+    },
+
+    1366: {
+      items: 4
+    }
+  }
+});
+    </script>
+{% endblock %}

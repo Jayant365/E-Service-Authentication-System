@@ -1,0 +1,356 @@
+{% extends 'service/base.html' %}
+
+
+        {% load staticfiles %}
+
+{% block head %}
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+	<title>Cart Details..Farmket India</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="canonical" href="http://www/service/cart/">
+	<link rel="stylesheet" href="{% static 'service/css/addstyle.css' %}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+{% endblock %}
+
+
+{% block body %}
+<!--
+<font  face=''>
+
+
+<div class="container" style="min-height:500px;">
+<div class="row" style="margin-top: 6%">
+    {% if message %}
+    <h3>{{ message }}</h3>
+    {% endif %}
+        <h2>Your Shopping Cart
+<br>
+            <span class="badge pull-right">
+                {% with totail_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        My Shopping Order:
+                        <a href="" style="color: #ffffff">
+                            {{ totail_items }} item {{ totail_items|pluralize }}, . {{ cart.get_total_price }}Rs
+                        </a>
+                        {% else %}
+                        Your cart is empty.
+                    {% endif %}
+                {% endwith %}
+            </span>
+<br>
+        </h2>
+
+            <table class="table table-striped table-hover container" style="border-radius:40px;" id="myTable">
+                <thead style="background-color: RGB(119,219,119);  " >
+                    <tr  >
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Quan.</th>
+                        <th><span class="glyphicon glyphicon-trash" aria-hidden="true">del</span></th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    {% with product=item.product  %}
+                        <tr id="{{ product.id }}" class="getr">
+                            <td>
+                                <a href="{% url 'service:detail' product.id %}">
+                                    <img src=" {{ product.logo.url }}" class="t-img" alt="..." style="height:40px">
+                                </a>
+                            </td>
+                            <td>{{ product.name }}</td>
+                            <td>
+                                <form action="{% url 'service:cart_add' product.id %}" class="form-product-ajax"  method="POST" data-url="/service/cart/">
+                                    {% csrf_token %}
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.update }}
+                                    <input type="submit" value="Upd." style="background-color: RGB(119,219,119);  " class="btn btn-info">
+                                </form>
+                            </td>
+                            <td>
+    <form action="{% url 'service:cart_remove' product.id %}" class="form-product-ajax"  method="POST" data-url="/service/cart/">
+                                    {% csrf_token %}
+
+                                    <input type="submit" value="del." style="background-color: RGB(119,219,119);  " class="btn btn-info">
+                                </form>                            </td>
+                            <td>{{ item.price }} rs/{{ product.weight }}</td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+                <tr style="background-color: RGB(119,219,119);">
+                    <td><b>Total</b></td>
+                    <td colspan="1"></td>
+                    <td colspan="3"><b>Total:</b><b id="tot">{{ cart.get_total_price }} Rs</b>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                     <b>You saved:</b><b id="saved">{{ cart.get_saved}} %</b></>
+                </tr>
+                </tbody>
+            </table>
+    {% widthratio item.price 1 5 %}
+        <p class="text-right">
+            <a href="{% url 'service:vegetables' %}" class="btn btn-default">Continue Shopping</a>
+                        <a href="{% url 'orders:order_create' 1   %}" class="btn btn-primary">Checkout</a>
+
+        </p>
+        </div>
+    </div>
+</font>
+
+-->
+<style>
+    .column-labels labels{
+font-size:400px;
+    }
+
+</style>
+<div class="container">
+
+<h2>Shoping Cart</h2>
+
+<div class="shopping-cart" style="padding:10px; padding-right:50px ; margin-top:10%; margin-bottom:10%;">
+
+  <div class="column-labels"><font size="2.5px">
+      <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal">Remove</label>
+      <label class="product-line-price">Total</label></font>
+  </div>
+
+                    {% for item in cart %}
+                    {% with product=item.product  %}
+
+  <div class="product">
+    <div class="product-image">
+      <img src=" {{ product.logo.url }}">
+    </div>
+    <div class="product-details">
+      <div class="product-title">{{ product.prod }}</div>
+    </div>
+    <div class="product-price">{{ item.price }}</div>
+
+    <div class="product-quantity"  >
+      <input type="number" id="{{ product.id }}"  value="{{ item.quantity }}" min="1">
+
+    </div>
+
+    <div class="product-removal">
+    <button class="remove-product " style="display:none">
+
+        <form action="{% url 'service:cart_remove' product.id %}" class="form-product-ajax"  method="POST" data-url="/service/cart/">
+                                    {% csrf_token %}
+    <button class="remove-product " type="submit">
+        Remove
+      </button>
+
+                                </form>
+    </button>
+
+    </div>
+    <div class="product-line-price">{{ product.price }}*{{ item.quantity }}</div>
+  </div>
+
+     {% endwith %}
+                {% endfor %}
+
+  <!--<div class="product">-->
+    <!--<div class="product-image">-->
+      <!--<img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">-->
+    <!--</div>-->
+    <!--<div class="product-details">-->
+      <!--<div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>-->
+    <!--</div>-->
+    <!--<div class="product-price">45.99</div>-->
+    <!--<div class="product-quantity">-->
+      <!--<input type="number" value="1" min="1">-->
+    <!--</div>-->
+    <!--<div class="product-removal">-->
+      <!--<button class="remove-product">-->
+        <!--Remove-->
+      <!--</button>-->
+    <!--</div>-->
+    <!--<div class="product-line-price">45.99</div>-->
+  <!--</div>-->
+
+  <div class="totals">
+    <div class="totals-item" style="display:none">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">71.97</div>
+
+    </div>
+
+    <div class="totals-item" style="display:none">
+      <label>Tax (5%)</label>
+      <div class="totals-value" id="cart-tax">3.60</div>
+    </div>
+    <div class="totals-item" style="display:none" >
+      <label>Shipping</label>
+      <div class="totals-value"  id="cart-shipping">0.00</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label style="font-size:17px">Grand Total</label>
+      <div class="totals-value" id="cart-total">{{ cart.get_total_price }}</div>
+    </div>
+  </div>
+
+     <a href="{% url 'orders:order_create' 1 %}" class="btn btn-primary btn-default checkout   " style="align:right; border-radius:20px; height:40px;width:150px; font-size:20px;">Checkout</a>
+
+</div>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+    {% block bases %}
+
+  <script src="{% static 'service/js/script.js' %}"></script>
+<script>
+
+
+    $('.product-quantity input').change( function() {
+//alert("ayush");
+
+      var ab=($(this).val());
+     // alert("this is"+ab);
+
+    var kz=($(this).attr('id'));
+   // alert("this is id"+kz);
+   // console.log(kz);
+     $.ajax({
+              type:'POST',
+              url:'/service/cart/up/'+ kz +'/',
+              data:{'mydata': 'xyz','val':ab , 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+ success:function(data){
+     //console.log("succ");
+        //  alert("succes:");
+     },
+
+ error:function(errordata){
+ //console.log("error");
+// console.log(errordata);
+alert("Network Error");
+ }
+ });
+
+});
+
+
+</script>
+ <script>
+ //most  important
+
+     $(document).ready(function(){
+
+
+     var productform= $('.form-product-ajax');
+     productform.submit(function(event){
+     event.preventDefault();
+
+     var thisform= $(this);
+     var actionEndpoint=thisform.attr('action');
+
+     var httpmethod=thisform.attr('method');
+     var formdata=thisform.serialize();
+ $.ajax({
+ url: actionEndpoint,
+ method:httpmethod,
+ data: formdata,
+ success:function(data){
+     //console.log("succ");
+         // alert("succes:");
+
+//     console.log(data);
+     $('#tot').html(data.total+' Rs');
+          $('#saved').html(data.b_total+' %');
+
+     },
+
+ error:function(errordata){
+ //console.log("error");
+// console.log(errordata);
+
+ }
+ });
+
+     });
+
+
+
+
+      $(".delete").click(function(){
+            var id_number = this.id;
+            var id=$(".getr").attr("id");
+
+identifier=1;
+            $.ajax({
+              type:'post',
+              url:id_number,
+              data:{'mydata': 'xyz', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+              success:function(data){
+              {
+               // document.getElementById("myTable").deleteRow(data.id);
+                    var row = document.getElementById(data.id);
+    row.parentNode.removeChild(row);
+     $('#tot').html(data.total+' Rs');
+     $('#saved').html(data.b_total+' %');
+
+}
+              },
+ error:function(errordata){
+ console.log("error");
+ console.log(errordata);
+}
+
+            });
+         });
+
+
+
+     });
+     if(performance.navigation.type == 2){
+  // location.reload(true);
+
+     $.ajax({
+              type:'POST',
+              url:'/service/cart/',
+              data:{'mydata': 'xyz', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+      success:function(data){
+              {
+     $('#tot').html(data.total+' Rs');
+     $('#saved').html(data.saved+' %');
+
+}
+              },
+            error: function(){
+                alert("Network Error");
+            }
+        });
+
+}
+
+     if(performance.navigation.type == 2){
+  location.reload(true);
+}
+
+    </script>
+{% endblock %}

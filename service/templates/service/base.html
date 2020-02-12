@@ -1,0 +1,504 @@
+<!DOCTYPE HTML>
+<html>
+
+{% load staticfiles %}
+
+	<head>
+
+
+<!--product-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+{% block head %}
+
+{% endblock %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  {% block basel %}
+
+{% endblock %}
+
+
+<style type="text/css">
+
+div.b {
+  text-align: left;
+}
+div.c {
+  text-align: left;
+}
+div.d {
+  text-align: left;
+}
+
+.fetse{
+font-size: 50px;
+    }
+
+body {
+	background: #e2eaef;
+	font-family: "Open Sans", sans-serif;
+}
+h2 {
+	color: #000;
+	font-size: 26px;
+	font-weight: 300;
+	text-align: center;
+	text-transform: uppercase;
+	position: relative;
+	margin: 30px 0 60px;
+}
+
+
+h2::after {
+	content: "";
+	width: 100px;
+	position: absolute;
+	margin: 0 auto;
+	height: 4px;
+	border-radius: 1px;
+	background: #7ac400;
+	left: 0;
+	right: 0;
+	bottom: -20px;
+}
+
+h2.sltxt::after {
+	content: "";
+	width: 100px;
+	position: absolute;
+	margin: 0 auto;
+	height: 4px;
+	border-radius: 1px;
+	background: none;;
+	left: 0;
+	right: 0;
+	bottom: -20px;
+}
+
+h2.sltxt{
+text-decoration-line: none;
+    }
+
+h2.sltxt:after{
+text-decoration-line: none;
+    }
+
+
+.carousel {
+	margin: 50px auto;
+	padding: 0 70px;
+}
+.carousel .item {
+	color: #747d89;
+	min-height: 325px;
+    text-align: center;
+	overflow: hidden;
+}
+.carousel .thumb-wrapper {
+	padding: 25px 15px;
+	background: #fff;
+	border-radius: 6px;
+	text-align: center;
+	position: relative;
+	box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+.carousel .item .img-box {
+	height: 120px;
+	margin-bottom: 20px;
+	width: 100%;
+	position: relative;
+}
+.carousel .item img {
+	max-width: 100%;
+	max-height: 100%;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+.carousel .item h4 {
+	font-size: 18px;
+}
+.carousel .item h4, .carousel .item p, .carousel .item ul {
+	margin-bottom: 5px;
+}
+.carousel .thumb-content .btn {
+	color: #7ac400;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: none;
+    border: 1px solid #7ac400;
+    padding: 6px 14px;
+    margin-top: 5px;
+    line-height: 16px;
+    border-radius: 20px;
+}
+.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+	color: #fff;
+	background: #7ac400;
+	box-shadow: none;
+}
+.carousel .thumb-content .btn i {
+	font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.carousel .carousel-control {
+	height: 44px;
+	width: 40px;
+	background: #7ac400;
+    margin: auto 0;
+    border-radius: 4px;
+	opacity: 0.8;
+}
+.carousel .carousel-control:hover {
+	background: #78bf00;
+	opacity: 1;
+}
+.carousel .carousel-control i {
+    font-size: 36px;
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    margin: -19px 0 0 0;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    color: #fff;
+	text-shadow: none;
+    font-weight: bold;
+}
+.carousel .item-price {
+	font-size: 13px;
+	padding: 2px 0;
+}
+.carousel .item-price strike {
+	opacity: 0.7;
+	margin-right: 5px;
+}
+.carousel .carousel-control.left i {
+	margin-left: -2px;
+}
+.carousel .carousel-control.right i {
+	margin-right: -4px;
+}
+.carousel .carousel-indicators {
+	bottom: -50px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+	width: 10px;
+	height: 10px;
+	margin: 4px;
+	border-radius: 50%;
+	border: none;
+}
+.carousel-indicators li {
+	background: rgba(0, 0, 0, 0.2);
+}
+.carousel-indicators li.active {
+	background: rgba(0, 0, 0, 0.6);
+}
+.carousel .wish-icon {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 99;
+	cursor: pointer;
+	font-size: 16px;
+	color: #abb0b8;
+}
+.carousel .wish-icon .fa-heart {
+	color: #ff6161;
+}
+.star-rating li {
+	padding: 0;
+}
+.star-rating i {
+	font-size: 14px;
+	color: #ffc000;
+}
+</style>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".wish-icon i").click(function(){
+			$(this).toggleClass("fa-heart fa-heart-o");
+		});
+	});
+</script>
+
+
+  <link rel="icon" href="{% static 'service/img/core-img/favicon.ico' %}">
+
+
+	<link rel="stylesheet" href="{% static 'service/stylefarm.css' %}">
+
+
+
+	</head>
+	<body>
+
+ <!-- Preloader -->
+  <div class="preloader d-flex align-items-center justify-content-center">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- ##### Header Area Start ##### -->
+  <header class="header-area">
+
+
+
+    <!-- Navbar Area -->
+    <div class="famie-main-menu">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container">
+          <!-- Menu -->
+          <nav class="classy-navbar justify-content-between" id="famieNav">
+            <!-- Nav Brand -->
+            <a href="{% url 'main' %}" class="nav-brand"><img src="{% static 'service/img/core-img/logo.png' %}" alt=""></a>
+            <!-- Navbar Toggler -->
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
+            </div>
+            <!-- Menu -->
+            <div class="classy-menu">
+              <!-- Close Button -->
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+              <!-- Navbar Start -->
+              <div class="classynav">
+                <ul>
+                  <li class="active"><a href="{% url 'main'  %}">Home</a></li>
+
+                <li><a href="{% url 'service:about_us'  %}">About</a></li>
+
+
+                  <li><a href="{% url 'service:contact_us'  %}">Contact</a></li>
+                  <li><a href="{% url 'service:cart_detail'  %}">Cart  <i class="icon_cart_alt" aria-hidden="true"></i></a></li>
+
+
+
+								{% if user.is_authenticated %}
+								<li>
+
+                 			        <a href="{% url 'accounts:logout_user' %}">
+                  			          <span class="" aria-hidden="true"></span>&nbsp; LogOut
+                  			        </a>
+                 				</li>
+
+                  		      {% else %}
+								<li class="has-dropdown">
+									<a href="#">Log In</a>
+									<ul class="dropdown">
+										<li> <a href="{% url 'accounts:login_user' %}" class="button">&nbsp; LogIn</a></li>
+										<li> <a href="{% url 'accounts:register' %}">
+
+                                          </span>&nbsp; Sign Up</a></li>
+
+									</ul>
+								</li>
+							{% endif %}
+
+                </ul>
+
+                <!-- Cart Icon -->
+                <!--<div id="cartIcon">-->
+                  <!--<a href="#">-->
+                    <!--<i class="icon_cart_alt" aria-hidden="true"></i>-->
+                    <!--<span class="cart-quantity">0</span>-->
+                  <!--</a>-->
+                <!--</div>-->
+              </div>
+              <!-- Navbar End -->
+            </div>
+          </nav>
+
+          <!-- Search Form -->
+          <div class="search-form">
+            <form action="#" method="get">
+              <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+              <button type="submit" class="d-none"></button>
+            </form>
+            <!-- Close Icon -->
+            <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+{% block body %}
+
+
+
+{% endblock %}
+
+
+
+
+  <!-- ##### Footer Area Start ##### -->
+  <footer class="footer-area">
+    <!-- Main Footer Area -->
+    <div class="main-footer bg-img bg-overlay section-padding-80-0" style="background-image: url({% static 'service/img/bg-img/3.jpg' %});">
+
+      <div class="container">
+        <div class="row">
+
+          <!-- Single Footer Widget Area -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-widget mb-80">
+              <a href="#" class="foo-logo d-block mb-30"><img src="{% static 'service/img/core-img/logo11.png' %}" class="fml"></a>
+
+
+            </div>
+          </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+      <div class="footer-widget mb-80">
+              <div class="contact-info">
+                  <h5 class="widget-title">FARMKET</h5>
+                  <p>Farmket: The Complete. Need of the Farmer.</p>
+                <p><i class="fa fa-map-pin" aria-hidden="true"></i>Cu ,CHANDIGARH</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i>info.farmket@gmail.com</p>
+                <p><i class="fa fa-phone" aria-hidden="true"></i>798838xxxx</p>
+              </div>
+            </div>
+        </div>
+
+          <!-- Single Footer Widget Area -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-widget mb-80">
+              <h5 class="widget-title">QUICK LINK</h5>
+              <!-- Footer Widget Nav -->
+              <nav class="footer-widget-nav">
+                <ul>
+                  <li><a href="{% url 'service:about_us' %}">About Us</a></li>
+                  <li><a href="{% url 'service:contact_us' %}">Contact Us</a></li>
+                  <!--<li><a href="#">Shipping</a></li>-->
+                  <!--<li><a href="#">FAQs</a></li>-->
+                  <!--<li><a href="#">Careers</a></li>-->
+                  <!--<li><a href="#">Payments</a></li>-->
+                  <!--<li><a href="#">Partners</a></li>-->
+                  <!--<li><a href="#">Guide</a></li>-->
+                  <!--<li><a href="#">Standard</a></li>-->
+                  <!--<li><a href="#">News</a></li>-->
+                  <!--<li><a href="#">Brands</a></li>-->
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+
+
+          <!-- Single Footer Widget Area -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-widget mb-80">
+              <h5 class="widget-title">STAY CONNECTED</h5>
+              <!-- Footer Social Info -->
+              <div class="footer-social-info">
+                <a href="#">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                  <span>Facebook</span>
+                </a>
+                <a href="#">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                  <span>Instagram</span>
+                </a>
+                <a href="#">
+                  <i class="fa fa-pinterest" aria-hidden="true"></i>
+                  <span>Pinterest</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+        </div>
+    </div>
+
+    <!-- Copywrite Area  -->
+    <div class="copywrite-area">
+      <div class="container">
+        <div class="copywrite-text">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <p>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Farmket
+</p>
+            </div>
+            <div class="col-md-6">
+              <div class="footer-nav">
+                <nav>
+                  <ul>
+                    <li><a href="{% url 'service:about_us' %}">About</a></li>
+                       <li><a href="{% url 'service:contact_us' %}">Contact</a></li>
+                      <!--<li><a href="#">Login</a></li>-->
+
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ##### Footer Area End ##### -->
+
+  <!-- ##### All Javascript Files ##### -->
+  <!-- jquery 2.2.4  -->
+  <script src="{% static 'service/js/jquery.min.js' %}"></script>
+  <!-- Popper js -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+  <script src="{% static 'service/js/popper.min.js' %}"></script>
+  <!-- Bootstrap js -->
+  <script src="{% static 'service/js/bootstrap.min.js' %}"></script>
+  <!-- Owl Carousel js -->
+  <script src="{% static 'service/js/owl.carousel.min.js' %}"></script>
+  <!-- Classynav -->
+  <script src="{% static 'service/js/classynav.js' %}"></script>
+  <!-- Wow js -->
+  <script src="{% static 'service/js/wow.min.js' %}"></script>
+  <!-- Sticky js -->
+  <script src="{% static 'service/js/jquery.sticky.js' %}"></script>
+  <!-- Magnific Popup js -->
+
+  <!-- Scrollup js -->
+  <script src="{% static 'service/js/jquery.scrollup.min.js' %}"></script>
+  <!-- Jarallax js -->
+  <script src="{% static 'service/js/jarallax.min.js' %}"></script>
+  <!-- Jarallax Video js -->
+  <script src="{% static 'service/js/jarallax-video.min.js' %}"></script>
+  <!-- Active js -->
+  <script src="{% static 'service/js/active.js' %}"></script>
+
+ <!-- Owl Carousel js --><script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+{% block bases %}
+{% endblock %}
+
+
+	</body>
+</html>
+
